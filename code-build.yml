@@ -17,11 +17,12 @@ parameters:
 steps:
 # maven
 - ${{ if eq(parameters.toolset, 'maven') }}:
-  - task: CmdLine@2
-    displayName: Maven Build
+#  - task: CmdLine@2
+#    displayName: Maven Build
   - script: |
-      workingDirectory: '${{ parameters.workingDirectory }}'
       mvn clean install -U -B -f pom.xml
+    workingDirectory: '${{ parameters.workingDirectory }}'
+    displayName: 'maven build'
 
 
 # nodejs
