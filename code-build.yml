@@ -19,9 +19,9 @@ steps:
 - ${{ if eq(parameters.toolset, 'maven') }}:
   - task: CmdLine@2
     displayName: Maven Build
+    workingDirectory: '${{ parameters.workingDirectory }}'
     inputs:
       script: |
-        workingDirectory: '${{ parameters.workingDirectory }}'
         mvn clean install -U -B -f pom.xml
 
 
