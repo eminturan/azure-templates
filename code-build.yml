@@ -19,8 +19,9 @@ steps:
 - ${{ if eq(parameters.toolset, 'maven') }}:
   - task: CmdLine@2
     displayName: Maven Build
-  - script: |
-      mvn clean install -U -B -f pom.xml
+    inputs:
+      script: |
+        mvn clean install -U -B -f pom.xml
 
 
 # nodejs
