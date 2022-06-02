@@ -14,6 +14,7 @@ steps:
 #  displayName: Docker Build
 #  inputs:
 - script: |
+    pwd
     docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
   workingDirectory: '${{ parameters.workingDirectory }}'
   displayName: 'Docker Build'

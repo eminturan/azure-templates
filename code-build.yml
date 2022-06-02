@@ -20,6 +20,7 @@ steps:
 #  - task: CmdLine@2
 #    displayName: Maven Build
   - script: |
+      pwd
       mvn clean install -U -B -f pom.xml -Dmaven.test.skip=true
     workingDirectory: '${{ parameters.workingDirectory }}'
     displayName: 'Maven Build'
