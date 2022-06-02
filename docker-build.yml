@@ -13,7 +13,7 @@ steps:
 #- task: CmdLine@2
 #  displayName: Docker Build
 #  inputs:
-  - script: |
-      docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
-    workingDirectory: '${{ parameters.workingDirectory }}'
-    displayName: 'Docker Build'
+- script: |
+    docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
+  workingDirectory: '${{ parameters.workingDirectory }}'
+  displayName: 'Docker Build'
