@@ -20,9 +20,9 @@ steps:
 #  - task: CmdLine@2
 #    displayName: Maven Build
   - script: |
-      mvn clean install -U -B -f pom.xml
+      mvn clean install -U -B -f pom.xml -Dmaven.test.skip=true
     workingDirectory: '${{ parameters.workingDirectory }}'
-    displayName: 'maven build'
+    displayName: 'Maven Build'
 
 
 # nodejs
