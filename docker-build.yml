@@ -1,0 +1,28 @@
+parameters:
+- name: workingDirectory
+  type: string
+  default: ''
+- name: registry_password
+  type: string
+  default: ''
+- name: registry_username
+  type: string
+  default: ''
+- name: registry_url
+  type: string
+  default: ''
+- name: repo_name
+  type: string
+  default: ''
+- name: image_name
+  type: string
+  default: ''
+
+steps:
+#- task: CmdLine@2
+#  displayName: Docker Build
+#  inputs:
+  - script: |
+      docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) -f ${{ parameters.workingDirectory }}/Dockerfile .
+    workingDirectory: '${{ parameters.workingDirectory }}'
+    displayName: 'Docker Build'
