@@ -1,0 +1,50 @@
+parameters:
+- name: workingDirectory
+  type: string
+  default: ''
+- name: buildProject
+  type: boolean
+  default: false
+- name: 'toolset'
+  default: dotnet
+  type: string
+  values:
+  - maven
+  - nodejs
+  - none
+
+
+steps:
+# maven
+- ${{ if eq(parameters.toolset, 'maven') }}:
+  - task: CmdLine@2
+    displayName: Maven Build
+  - script: |
+      mvn clean install -U -B -f pom.xml
+
+
+# nodejs
+- ${{ if eq(parameters.toolset, 'nodejs') }}:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+      displayName: 'Install Node.js'
+  - script: |
+      npm install
+      workingDirectory: '${{ parameters.workingDirectory }}'
+      displayName: 'npm install'
+
+  - script: |
+      ng build
+      workingDirectory: '${{ parameters.workingDirectory }}'
+      condition: ${{ parameters.buildProject }}
+      displayName: 'npm build'
+
+
+ # none
+- ${{ if eq(parameters.toolset, 'none') }}:
+  - task: CmdLine@2
+    displayName: Build Process is skipped
+    inputs:
+      script: |
+        echo "Build Process is skipped!"
