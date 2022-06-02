@@ -6,7 +6,7 @@ parameters:
   type: boolean
   default: false
 - name: 'toolset'
-  default: dotnet
+  default: maven
   type: string
   values:
   - maven
