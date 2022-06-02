@@ -2,16 +2,7 @@ parameters:
 - name: workingDirectory
   type: string
   default: ''
-- name: registry_password
-  type: string
-  default: ''
-- name: registry_username
-  type: string
-  default: ''
 - name: registry_url
-  type: string
-  default: ''
-- name: repo_name
   type: string
   default: ''
 - name: image_name
