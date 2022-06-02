@@ -10,11 +10,11 @@ parameters:
   default: ''
 
 steps:
-#- task: CmdLine@2
-#  displayName: Docker Build
-#  inputs:
-- script: |
-    pwd
-    docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
-  workingDirectory: "${{ parameters.workingDirectory }}"
-  displayName: 'Docker Build'
+- task: CmdLine@2
+  displayName: Docker Build
+  inputs:
+    script: |
+      pwd
+      cd "cd ${{ parameters.workingDirectory }}"
+      pwd
+      docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
