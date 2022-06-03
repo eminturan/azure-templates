@@ -26,6 +26,11 @@ steps:
     workingDirectory: '${{ parameters.workingDirectory }}'
     displayName: 'Maven Build'
 
+  – task: PublishBuildArtifacts@1
+    inputs:
+      path: $(Build.ArtifactStagingDirectory)
+      artifact: drop
+
 
 # nodejs
 - ${{ if eq(parameters.toolset, 'nodejs') }}:
