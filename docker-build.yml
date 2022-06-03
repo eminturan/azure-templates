@@ -17,6 +17,6 @@ steps:
       ls
       pwd
       echo "$(Build.SourcesDirectory)"
-      #cd "${{ parameters.workingDirectory }}"
+      cd "${{ parameters.workingDirectory }}"
       #pwd
       docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
