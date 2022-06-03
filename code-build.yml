@@ -22,6 +22,7 @@ steps:
   - script: |
       pwd
       mvn clean install -U -B -f pom.xml -Dmaven.test.skip=true
+      echo "$(Build.SourcesDirectory)"
     workingDirectory: '${{ parameters.workingDirectory }}'
     displayName: 'Maven Build'
 
