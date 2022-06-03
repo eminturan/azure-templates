@@ -1,0 +1,42 @@
+parameters:
+- name: workingDirectory
+  type: string
+  default: ''
+- name: registry_url
+  type: string
+  default: ''
+- name: image_name
+  type: string
+  default: ''
+- name: app_name
+  type: string
+  default: ''
+- name: namespace
+  type: string
+  default: ''
+- name: helm_path
+  type: string
+  default: ''
+
+steps:
+- task: CmdLine@2
+  displayName: Download Helm Chart
+  inputs:
+    script: |
+      wget https://raw.githubusercontent.com/eminturan/azure-templates/main/backend-api-0.0.1.tgz
+  enabled: true
+
+- task: CmdLine@2
+  displayName: Deploy To Openshift with Helm Commands
+  inputs:
+    script: |
+      ls
+      pwd
+
+      cd "${{ parameters.workingDirectory }}"
+      ls
+      pwd
+      docker login -u ${{ parameters.registry_username }} -p "${{ parameters.registry_password }}"
+      docker push ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId)
+
+      helm upgrade -n $(namespace) --install $(app_name) $(helm_path) -f "$(Build.Repository.LocalPath)/values.yaml" --set image.$(project_env).repository=${{ parameters.registry_url }}/${{ parameters.image_name }} --set image.$(project_env).tag=$(Build.BuildId)
