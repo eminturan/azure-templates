@@ -31,10 +31,10 @@ steps:
     inputs:
       contents: '**'
       targetFolder: $(Build.ArtifactStagingDirectory)
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathToPublish: $(Build.ArtifactStagingDirectory)
-      artifactName: MavenOutput
+#  - task: PublishBuildArtifacts@1
+#    inputs:
+#      pathToPublish: $(Build.ArtifactStagingDirectory)
+#      artifactName: MavenOutput
 
 
 # nodejs
