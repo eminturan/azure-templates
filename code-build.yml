@@ -21,6 +21,7 @@ steps:
 #    displayName: Maven Build
   - script: |
       pwd
+      echo "$(Pipeline.Workspace)"
       mvn clean install -U -B -f pom.xml -Dmaven.test.skip=true
       echo "$(Build.SourcesDirectory)"
     workingDirectory: '${{ parameters.workingDirectory }}'
