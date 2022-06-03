@@ -11,11 +11,16 @@ parameters:
 
 steps:
 
-- task: CopyFiles@2
+#- task: CopyFiles@2
+#  inputs:
+#    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+#    contents: '**'
+#    targetFolder: "${{ parameters.workingDirectory }}"
+
+- task: DownloadPipelineArtifact@2
   inputs:
-    SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    contents: '**'
-    targetFolder: "${{ parameters.workingDirectory }}"
+    artifact: 'srcCode'
+    path: "${{ parameters.workingDirectory }}"
 
 - task: CmdLine@2
   displayName: Docker Build
