@@ -26,12 +26,6 @@ steps:
     workingDirectory: '${{ parameters.workingDirectory }}'
     displayName: 'Maven Build'
 
-  - task: CopyFiles@2
-    inputs:
-      SourceFolder: '${{ parameters.workingDirectory }}'
-      Contents: '**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 
 # nodejs
 - ${{ if eq(parameters.toolset, 'nodejs') }}:
