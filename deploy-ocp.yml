@@ -33,7 +33,7 @@ steps:
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'ocp-test2'
-    #cmd: 'get po -n ${{ parameters.namespace }}'
+    cmd: 'get po -n ${{ parameters.namespace }}'
     uselocalOc: true
   enabled: true
 
