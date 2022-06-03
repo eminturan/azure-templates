@@ -24,7 +24,9 @@ steps:
       pwd
       echo "$(Build.SourcesDirectory)"
       echo "$(Pipeline.Workspace)"
-      
+
       cd "${{ parameters.workingDirectory }}"
+      ls
+      pwd
       docker login -u ${{ parameters.registry_username }} -p "${{ parameters.registry_password }}"
       docker push ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId)
