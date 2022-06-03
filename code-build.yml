@@ -27,6 +27,15 @@ steps:
     workingDirectory: '${{ parameters.workingDirectory }}'
     displayName: 'Maven Build'
 
+  - task: CopyFiles@2
+    inputs:
+      contents: '/**'
+      targetFolder: $(Build.ArtifactStagingDirectory)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: MavenOutput
+
 
 # nodejs
 - ${{ if eq(parameters.toolset, 'nodejs') }}:
