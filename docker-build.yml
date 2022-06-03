@@ -10,6 +10,11 @@ parameters:
   default: ''
 
 steps:
+– task: PublishBuildArtifacts@1
+  inputs:
+    path: $(Build.ArtifactStagingDirectory)
+    artifact: drop
+
 - task: CmdLine@2
   displayName: Docker Build
   inputs:
