@@ -33,10 +33,4 @@ steps:
       ls
       pwd
 
-      cd "${{ parameters.workingDirectory }}"
-      ls
-      pwd
-      docker login -u ${{ parameters.registry_username }} -p "${{ parameters.registry_password }}"
-      docker push ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId)
-
       helm upgrade -n $(namespace) --install $(app_name) $(helm_path) -f "$(Build.Repository.LocalPath)/values.yaml" --set image.$(project_env).repository=${{ parameters.registry_url }}/${{ parameters.image_name }} --set image.$(project_env).tag=$(Build.BuildId)
