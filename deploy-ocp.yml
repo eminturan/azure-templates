@@ -17,6 +17,9 @@ parameters:
 - name: helm_path
   type: string
   default: ''
+- name: project_env
+  type: string
+  default: ''
 
 steps:
 - task: CmdLine@2
