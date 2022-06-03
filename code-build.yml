@@ -26,11 +26,6 @@ steps:
     workingDirectory: '${{ parameters.workingDirectory }}'
     displayName: 'Maven Build'
 
-  – task: PublishBuildArtifacts@1
-    inputs:
-      path: $(Build.ArtifactStagingDirectory)
-      artifact: drop
-
 
 # nodejs
 - ${{ if eq(parameters.toolset, 'nodejs') }}:
@@ -57,3 +52,8 @@ steps:
     inputs:
       script: |
         echo "Build Process is skipped!"
+
+– task: PublishBuildArtifacts@1
+  inputs:
+    path: $(Build.ArtifactStagingDirectory)
+    artifact: drop
