@@ -8,6 +8,9 @@ parameters:
 - name: image_name
   type: string
   default: ''
+- name: project_env
+  type: string
+  default: ''
 
 steps:
 
@@ -33,4 +36,4 @@ steps:
       cd "${{ parameters.workingDirectory }}"
       ls
       pwd
-      docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId) .
+      docker build -t ${{ parameters.registry_url }}/${{ parameters.image_name }}:${{ parameters.project_env }}-$(Build.BuildId) .

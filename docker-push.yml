@@ -29,4 +29,4 @@ steps:
       ls
       pwd
       docker login -u ${{ parameters.registry_username }} -p "${{ parameters.registry_password }}"
-      docker push ${{ parameters.registry_url }}/${{ parameters.image_name }}:$(Build.BuildId)
+      docker push ${{ parameters.registry_url }}/${{ parameters.image_name }}:${{ parameters.project_env }}-$(Build.BuildId)
