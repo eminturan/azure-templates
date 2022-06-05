@@ -44,4 +44,4 @@ steps:
       ls
       pwd
 
-      helm upgrade -n ${{ parameters.namespace }} --install ${{ parameters.app_name }} ${{ parameters.helm_path }} -f "$(Build.Repository.LocalPath)/values.yaml" --set image.${{ parameters.project_env }}.repository=${{ parameters.registry_url }}/${{ parameters.image_name }} --set image.${{ parameters.project_env }}.tag=${{ parameters.project_env }}-$(Build.BuildId)
+      helm upgrade -n ${{ parameters.namespace }} --install ${{ parameters.app_name }} ${{ parameters.helm_path }} -f "$(Build.Repository.LocalPath)/values.yaml" --set image.${{ parameters.project_env }}.repository=${{ parameters.registry_url }}/${{ parameters.image_name }} --set image.${{ parameters.project_env }}.tag=${{ parameters.project_env }}-$(Build.BuildId) --set environment=${{ parameters.project_env }}
